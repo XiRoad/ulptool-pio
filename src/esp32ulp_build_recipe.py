@@ -177,7 +177,7 @@ def build_ulp(PATHS, ulp_sfiles, board_options, has_s_file):
     else:
         try:
             out = out.decode('utf-8')
-            file_path = os.path.join(PATHS['core'], 'tools', 'sdk', MCU, 'dio_qspi', 'include', 'sdkconfig.h' )
+            file_path = os.path.join(PATHS['core'] + '-libs', MCU, 'dio_qspi', 'include', 'sdkconfig.h' )
             with open(file_path, "r") as file: sdk_text = file.read()
 
             mem = re.findall(r'#define CONFIG_ULP_COPROC_RESERVE_MEM (.*?)\n', sdk_text)[0]
@@ -559,11 +559,11 @@ def gen_xtensa_cmds(path):
 
 def gen_binutils_cmds(path):
     cmds = dict()
-    cmds['ULP_AS']        = os.path.join(path, '%sulp-elf-as' % MCU)
-    cmds['ULP_LD']        = os.path.join(path, '%sulp-elf-ld' % MCU)
-    cmds['ULP_NM']        = os.path.join(path, '%sulp-elf-nm' % MCU)
-    cmds['ULP_SIZE']      = os.path.join(path, '%sulp-elf-size' % MCU)
-    cmds['ULP_OBJCPY']    = os.path.join(path, '%sulp-elf-objcopy' % MCU)
+    cmds['ULP_AS']        = os.path.join(path, 'esp32ulp-elf-as')
+    cmds['ULP_LD']        = os.path.join(path, 'esp32ulp-elf-ld')
+    cmds['ULP_NM']        = os.path.join(path, 'esp32ulp-elf-nm' )
+    cmds['ULP_SIZE']      = os.path.join(path, 'esp32ulp-elf-size')
+    cmds['ULP_OBJCPY']    = os.path.join(path, 'esp32ulp-elf-objcopy')
     return cmds
 
 def md5(fname):
