@@ -276,7 +276,7 @@ def build_ulp(PATHS, ulp_sfiles, board_options, has_s_file):
         console_string += cmd[0] + '\r'
 
     ## Check if sdkconfig.h md5 hash has changed indicating the file has changed
-    sdk_hash = md5(os.path.join(PATHS['core'] , 'tools', 'sdk', MCU, 'dio_qspi', 'include', 'sdkconfig.h'))
+    sdk_hash = md5(os.path.join(PATHS['core'] + '-libs', MCU, 'dio_qspi', 'include', 'sdkconfig.h'))
     dict_hash = dict()
     with open(os.path.join(PATHS['ulptool'], 'hash.json'), 'r') as file:
         dict_hash = json.load(file)
